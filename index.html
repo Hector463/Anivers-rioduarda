@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Aniversário Eduarda</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+background:linear-gradient(135deg,#ffb6d9,#ff7eb3);
+overflow:hidden;
+}
+
+/* TEXTO CENTRAL */
+
+.mensagem{
+text-align:center;
+font-size:40px;
+color:white;
+font-weight:bold;
+text-shadow:0 0 20px #ff2e93;
+z-index:2;
+}
+
+/* CORAÇÕES FLUTUANDO */
+
+.heart{
+position:absolute;
+width:20px;
+height:20px;
+background:#ff2e93;
+transform:rotate(45deg);
+animation:float 6s linear infinite;
+}
+
+.heart:before,
+.heart:after{
+content:"";
+position:absolute;
+width:20px;
+height:20px;
+background:#ff2e93;
+border-radius:50%;
+}
+
+.heart:before{
+top:-10px;
+left:0;
+}
+
+.heart:after{
+left:-10px;
+top:0;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) rotate(45deg);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh) rotate(45deg);
+opacity:0;
+}
+}
+
+/* CORAÇÃO DE CLICK */
+
+.clickHeart{
+position:absolute;
+width:25px;
+height:25px;
+background:#ff4da6;
+transform:rotate(45deg);
+pointer-events:none;
+animation:pop 1s ease forwards;
+}
+
+.clickHeart:before,
+.clickHeart:after{
+content:"";
+position:absolute;
+width:25px;
+height:25px;
+background:#ff4da6;
+border-radius:50%;
+}
+
+.clickHeart:before{
+top:-12px;
+left:0;
+}
+
+.clickHeart:after{
+left:-12px;
+top:0;
+}
+
+@keyframes pop{
+0%{
+transform:scale(0.5) rotate(45deg);
+opacity:1;
+}
+100%{
+transform:scale(2) rotate(45deg) translateY(-50px);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="mensagem">
+
+<!-- ✏️ ESCREVA A MENSAGEM AQUI -->
+
+Feliz aniversário Eduarda 💖
+Te Amo Muitoo
+
+</div>
+
+<script>
+
+/* CORAÇÕES FLUTUANDO */
+
+function createFloatingHeart(){
+
+const heart=document.createElement("div");
+heart.className="heart";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+4)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000)
+
+}
+
+setInterval(createFloatingHeart,300);
+
+
+/* CORAÇÃO AO CLICAR */
+
+document.addEventListener("click",function(e){
+
+const heart=document.createElement("div");
+heart.className="clickHeart";
+
+heart.style.left=e.clientX+"px";
+heart.style.top=e.clientY+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},1000)
+
+})
+
+</script>
+
+</body>
+</html>
