@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Feliz Aniversário Eduarda</title>
+<title>Feliz Aniversário Edwada</title>
 
 <style>
 
@@ -18,15 +18,42 @@ background:linear-gradient(135deg,#ffb6d9,#ff7eb3);
 overflow:hidden;
 }
 
-/* TEXTO CENTRAL */
+/* CONTEÚDO CENTRAL */
+
+.container{
+text-align:center;
+color:white;
+z-index:2;
+}
+
+/* TEXTO */
 
 .mensagem{
-text-align:center;
-font-size:40px;
-color:white;
+font-size:45px;
 font-weight:bold;
 text-shadow:0 0 20px #ff2e93;
-z-index:2;
+margin-bottom:30px;
+}
+
+/* FOTOS */
+
+.fotos{
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.foto{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 0 25px #ff2e93;
+transition:0.3s;
+}
+
+.foto:hover{
+transform:scale(1.1);
 }
 
 /* CORAÇÕES FLUTUANDO */
@@ -71,7 +98,7 @@ opacity:0;
 }
 }
 
-/* CORAÇÃO DE CLICK */
+/* CORAÇÃO AO CLICAR */
 
 .clickHeart{
 position:absolute;
@@ -119,12 +146,22 @@ opacity:0;
 
 <body>
 
+<div class="container">
+
 <div class="mensagem">
 
-<!-- ✏️ ESCREVA A MENSAGEM AQUI -->
+<!-- ESCREVA SUA MENSAGEM AQUI -->
 
-Feliz aniversário Eduarda 💖
-Te Amo Muitoo
+Feliz aniversário Edwada 💖
+
+</div>
+
+<div class="fotos">
+
+<img src="foto1.jpg" class="foto">
+<img src="foto2.jpg" class="foto">
+
+</div>
 
 </div>
 
@@ -132,7 +169,7 @@ Te Amo Muitoo
 
 /* CORAÇÕES FLUTUANDO */
 
-function createFloatingHeart(){
+function createHeart(){
 
 const heart=document.createElement("div");
 heart.className="heart";
@@ -148,7 +185,7 @@ heart.remove();
 
 }
 
-setInterval(createFloatingHeart,300);
+setInterval(createHeart,300);
 
 
 /* CORAÇÃO AO CLICAR */
