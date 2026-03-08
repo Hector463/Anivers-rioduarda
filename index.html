@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Feliz Aniversário Eduarda</title>
 
 <style>
 
 body{
 margin:0;
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#ff9ecf,#ff5ca8);
 font-family:Arial;
 overflow:hidden;
+padding:20px;
 }
 
 /* CARTA */
 
 .carta{
-width:380px;
+max-width:420px;
+width:100%;
 background:white;
-border-radius:12px;
+border-radius:15px;
 box-shadow:0 0 25px pink;
-padding:30px;
+padding:25px;
 text-align:center;
 cursor:pointer;
 position:relative;
+z-index:2;
 }
 
 /* TEXTO */
@@ -52,20 +58,21 @@ animation:batida 1s infinite;
 100%{transform:scale(1);}
 }
 
-/* FOTOS POLAROID */
+/* FOTOS */
 
 .fotos{
 display:flex;
 justify-content:center;
-gap:20px;
+gap:30px;
 margin-top:20px;
+flex-wrap:wrap;
 }
 
 .polaroid{
 background:white;
 padding:10px;
 border-radius:5px;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
 transform:rotate(-5deg);
 }
 
@@ -77,23 +84,67 @@ transform:rotate(5deg);
 width:220px;
 height:220px;
 object-fit:cover;
+border-radius:3px;
 }
 
-/* CORAÇÃO AO CLICAR */
+/* CORAÇÕES SUBINDO */
 
-.clickHeart{
+.heart{
 position:absolute;
+bottom:-40px;
 font-size:20px;
-animation:subir 1s forwards;
-pointer-events:none;
+animation:subir 6s linear infinite;
 }
 
 @keyframes subir{
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
+
+}
+
+/* CORAÇÃO CLICK */
+
+.clickHeart{
+position:absolute;
+font-size:22px;
+animation:clickUp 1s forwards;
+pointer-events:none;
+}
+
+@keyframes clickUp{
 0%{opacity:1;transform:translateY(0);}
 100%{opacity:0;transform:translateY(-60px);}
 }
 
+/* RESPONSIVO PARA CELULAR */
+
+@media (max-width:600px){
+
+.mensagem{
+font-size:14px;
+}
+
+.polaroid img{
+width:150px;
+height:150px;
+}
+
+.coracao{
+font-size:35px;
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
@@ -104,16 +155,13 @@ pointer-events:none;
 
 <h2>Feliz aniversário Eduarda 💖</h2>
 
-Hoje é um dia muito especial, porque é o dia em que nasceu uma pessoa incrível que ilumina tudo ao seu redor.  
+Hoje é um dia muito especial, porque é o dia em que nasceu uma pessoa incrível que ilumina tudo ao seu redor.
 Quero que você saiba o quanto você é importante para mim e o quanto sua presença deixa meus dias mais felizes.
 
-Você é uma pessoa maravilhosa, cheia de luz, carinho e com um sorriso que consegue melhorar qualquer momento.  
+Você é uma pessoa maravilhosa, cheia de luz, carinho e com um sorriso que consegue melhorar qualquer momento.
 Que nesse novo ciclo da sua vida não falte alegria, sonhos realizados, paz, amor e muitas conquistas.
 
-Espero que seu dia seja tão lindo quanto você, cheio de momentos especiais, risadas e coisas boas.  
-Que a vida continue te presenteando com felicidade e que todos os seus sonhos se tornem realidade.
-
-Parabéns, Eduarda. Que Deus abençoe muito a sua vida e seu caminho.
+Espero que seu dia seja tão lindo quanto você, cheio de momentos especiais e muitas alegrias.
 
 <b>Eu te amo! ❤️</b>
 
@@ -142,64 +190,49 @@ Parabéns, Eduarda. Que Deus abençoe muito a sua vida e seu caminho.
 const carta = document.getElementById("carta");
 const musica = document.getElementById("musica");
 
-/* PLAYLIST */
-
-const playlist = [
+const playlist=[
 "musica1.mp3",
 "musica2.mp3",
 "musica3.mp3"
 ];
 
-let musicaAtual = 0;
+let musicaAtual=0;
 
-/* tocar música ao clicar */
+/* tocar música */
 
-carta.addEventListener("click", function(){
+carta.addEventListener("click",function(){
 
 if(musica.paused){
 
-musica.src = playlist[musicaAtual];
+musica.src=playlist[musicaAtual];
 musica.play();
 
 }
 
 });
 
-/* próxima música automática */
+/* próxima música */
 
-musica.addEventListener("ended", function(){
+musica.addEventListener("ended",function(){
 
 musicaAtual++;
 
-if(musicaAtual < playlist.length){
+if(musicaAtual<playlist.length){
 
-musica.src = playlist[musicaAtual];
+musica.src=playlist[musicaAtual];
 musica.play();
 
 }
 
 });
 
-/* corações ao clicar */
+/* CORAÇÕES SUBINDO */
 
-document.addEventListener("click",function(e){
+function criarCoracao(){
 
 const heart=document.createElement("div");
-heart.className="clickHeart";
+
+heart.className="heart";
 heart.innerHTML="💗";
 
-heart.style.left=e.clientX+"px";
-heart.style.top=e.clientY+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},1000)
-
-});
-
-</script>
-
-</body>
-</html>
+heart.style.left=Math
